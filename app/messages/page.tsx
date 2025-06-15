@@ -2,6 +2,7 @@
 
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
+import { ConvexError } from "convex/values";
 import { useState } from "react";
 
 const Messages = () => {
@@ -13,8 +14,15 @@ const Messages = () => {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
-		await create({ title, content });
+		try {
+			await create({ title, content });
+		} catch (error) {
+			const errorMessage =
+				error instanceof ConvexError
+					? (error.data as { message: string }).message
+					: "Unexpected error occurred";
+			alert(errorMessage);
+		}
 
 		setTitle("");
 		setContent("");
