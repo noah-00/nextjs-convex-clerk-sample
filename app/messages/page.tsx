@@ -63,6 +63,7 @@ const Messages = () => {
 							id="title"
 							type="text"
 							onChange={(e) => setTitle(e.target.value)}
+							value={title}
 						/>
 					</div>
 					<div className="w-full md:w-1/2 px-3">
@@ -76,6 +77,7 @@ const Messages = () => {
 							className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
 							id="content"
 							onChange={(e) => setContent(e.target.value)}
+							value={content}
 						/>
 					</div>
 					<button
